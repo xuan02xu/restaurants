@@ -17,8 +17,8 @@
 
 ```js
 window.POCKET_CONFIG = {
-  supabaseUrl: "",
-  supabaseKey: "",
+  supabaseUrl: "https://fqubwaqrrfrbfqqvbjdl.supabase.co",
+  supabaseKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZxdWJ3YXFycmZyYmZxcXZiamRsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU2MzUxNTksImV4cCI6MjEwMTIxMTE1OX0.3av90ml1mwQsiEoC4TbgIdUCPncO-x3NlEoazZkkS2U",
   table: "restaurants"
 };
 ```
