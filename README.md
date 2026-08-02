@@ -9,6 +9,7 @@
 | `index.html` | 可直接部署的完整網站，React 已內嵌，無外部相依 |
 | `schema.sql` | 共用模式要用的資料表，貼到 Supabase 執行 |
 | `migration.sql` | 已經建過表的話，跑這個補上 hours / menu 欄位 |
+| `storage.sql` | 要上傳菜單照片的話，跑這個建 Storage bucket |
 | `restaurant-pocket-list.jsx` | 原始碼 |
 
 ## 兩種模式
@@ -64,8 +65,21 @@ window.POCKET_CONFIG = {
 
 ### 菜單
 
-每家店可以貼一個菜單連結（照片或網頁都行，網址不打 `https://` 會自動補）。
-有填的話卡片上會多一顆「菜單」按鈕。
+兩種方式：
+
+- **上傳照片** — 表單裡按「上傳菜單照片」，手機可以直接拍。
+  上傳前會在瀏覽器端縮到最長邊 1600px 再壓成 JPEG，4MB 的照片通常變成 200～400KB。
+  要先跑 `storage.sql` 建 bucket。
+- **貼網址** — 圖片連結或菜單網頁都行，不打 `https://` 會自動補。
+
+卡片上會多一顆「菜單」按鈕。**是圖片就直接在頁面上開大圖**（Esc 或點背景關掉）；
+是一般網頁才跳出去開新分頁。
+
+容量：免費方案 1GB、每月 5GB 流量。以一張 300KB 估，大概放得下三千張。
+`storage.sql` 註解裡有查用量跟清孤兒檔的 SQL。
+
+⚠️ 跟 `restaurants` 表一樣，**拿到網址的人都能上傳**。bucket 有限制
+5MB 跟只收 jpeg/png/webp，但擋不了刻意灌檔。
 
 以上三項要跑一次 `migration.sql`。
 
